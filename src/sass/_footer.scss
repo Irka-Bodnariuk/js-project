@@ -1,0 +1,36 @@
+.footer {
+  background-color: #f7f7f7;
+
+  &__container {
+    color: #545454;
+    text-align: center;
+    padding-top: 29px;
+    padding-bottom: 30px;
+    font-family: 'Roboto';
+    font-size: 14px;
+    line-height: 1.14;
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: center;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      font-size: 16px;
+      line-height: 1.19;
+    }
+    @media screen and (min-width: 768px) {
+    }
+  }
+  &__text {
+    margin-bottom: 10px;
+  }
+  &__icon {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  &__link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

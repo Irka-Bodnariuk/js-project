@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
-  </head>
-  <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page title</title>
+  <link rel="stylesheet" href="./sass/index.scss" />
+  <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <nav class="navigation">
+        <a href="./index.html" class="logo">Filmoteka</a>
+        <ul class="navigation-list">
+          <li class="navigation-item"><a href="./index.html" class="navigation-link"></a></li>
+          <li class="navigation-item"><a href="./index.html" class="navigation-link"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="wrap1">
+    <form class="search-form" id="search-form">
+      <input class="search-input" type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+      <button class="search-btn" type="submit">
+        <span class="material-icons">search</span>
+      </button>
+      </button>
+    </form>
+
+    <div class="cards">
+      <!-- Картки зображень -->
+    </div>
+
+    <button type="button" class="load-more is-hidden">Load more</button>
+  </div>
+
+</body>
+
 </html>
