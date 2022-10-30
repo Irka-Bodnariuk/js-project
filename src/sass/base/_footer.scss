@@ -13,7 +13,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    @media screen and (min-width: 768px) {
+    @include tablet {
       font-size: 16px;
       line-height: 1.19;
       padding-top: 30px;
@@ -21,7 +21,7 @@
   }
   &__text {
     margin-bottom: 10px;
-    @media screen and (min-width: 768px) {
+    @include tablet {
       margin-bottom: 0;
     }
   }
@@ -30,18 +30,22 @@
     margin-right: 10px;
     animation: pulsation 4s linear 1s infinite;
   }
-  &__link {
-    color: $color-text;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: color 300ms $timing-function;
-    &:hover,
-    :focus {
-      color: $color-accent;
-    }
+}
+.footer__link {
+  color: $color-text;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 300ms $timing-function;
+  &:hover,
+  :focus {
+    color: $color-accent;
   }
+}
+.footer__link.dark {
+  color: #fff;
+  background: #191919;
 }
 
 @keyframes pulsation {

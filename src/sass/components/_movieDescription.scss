@@ -1,0 +1,279 @@
+.movie__description {
+  position: relative;
+
+  @include tablet {
+    display: flex;
+  }
+}
+
+.movie__poster-wrappaer {
+  @include tablet-close {
+    margin-bottom: 20px;
+  }
+
+  @include tablet {
+    margin-right: 68px;
+    width: 264px;
+  }
+
+  @include tablet-plus {
+    margin-right: 16px;
+    width: 325px;
+  }
+}
+
+.movie__poster {
+  width: 240px;
+  height: 357px;
+  margin-left: auto;
+  margin-right: auto;
+  @include tablet {
+    width: 264px;
+    height: 373.55px;
+  }
+  @include desktop {
+    width: 375px;
+    height: 478px;
+  }
+}
+
+// .movie__container {
+// }
+
+.movie__title {
+  margin-bottom: 20px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  text-transform: uppercase;
+
+  @include tablet-close {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+  }
+}
+
+.description__container {
+  display: flex;
+  margin-bottom: 20px;
+  // height: 88px;
+}
+
+.description__title-wrapper {
+  width: 70px;
+  margin-right: 40px;
+}
+
+.description__title {
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+
+  color: #8c8c8c;
+}
+
+.description__text {
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+
+  display: flex;
+  align-items: center;
+}
+
+.vote {
+  padding: 1px 10px;
+}
+
+.vote-accent {
+  background-color: #ff6b01;
+  border-radius: 5px;
+  color: $color-white;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.about__title {
+  margin-bottom: 8px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+
+  text-transform: uppercase;
+}
+
+.about__text {
+  margin-bottom: 20px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+
+  @include tablet-close {
+    overflow-y: scroll;
+    height: 100px;
+  }
+
+  @include tablet {
+    width: 264px;
+  }
+
+  @include tablet-plus {
+    width: 391px;
+  }
+}
+
+.btn__container {
+  display: flex;
+  justify-content: space-between;
+
+  @include tablet {
+    width: 300px;
+  }
+
+  @include tablet-plus {
+    width: 400px;
+  }
+}
+
+.modal__btn {
+  width: 130px;
+  height: 44px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+
+  border-radius: 5px;
+  border: 1px solid $color-main-text;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: $color-main-text;
+
+  transition: all 250ms linear;
+
+  &:hover,
+  &:focus {
+    background: #ff6b01;
+    border: 1px solid #ff6b01;
+    color: $color-white;
+  }
+
+  @include tablet {
+    width: 140px;
+  }
+
+  @include tablet-plus {
+    width: 190px;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: -40;
+  right: -13;
+  width: 30px;
+  height: 30px;
+
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  stroke-width: 3px;
+  stroke: $color-main-text;
+  transition: stroke 300ms $timing-function;
+
+  &:hover,
+  &:focus {
+    stroke: $color-accent;
+  }
+
+  @include tablet {
+    top: -30;
+    right: -28;
+  }
+
+  @include tablet-plus {
+    top: -25;
+    right: 0;
+  }
+}
+.modal-content.dark .modal__close {
+  stroke: $color-white;
+  transition: fill 300ms $timing-function, stroke 300ms $timing-function;
+}
+.modal-content.dark .modal__close:hover,
+.modal-content.dark .modal__close:focus {
+  stroke: $color-accent;
+}
+
+.youtube {
+  position: absolute;
+  top: 5px;
+  left: 211px;
+  width: 43px;
+  height: 30px;
+  text-align: center;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  transition: all 0.25s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 250ms linear;
+  @include tablet {
+    left: 180px;
+  }
+  @include tablet-plus {
+    left: 246px;
+  }
+  @include desktop {
+    left: 275px;
+  }
+}
+.icon-youtube {
+  fill: #ff0000;
+  stroke: #ff0000;
+  transition: all 250ms linear;
+}
+
+.icon-youtube:hover,
+.icon-youtube:focus {
+  fill: #b80000;
+  stroke: #b80000;
+}
