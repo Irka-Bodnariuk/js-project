@@ -1,17 +1,22 @@
 import Notiflix from 'notiflix';
 import Pagination from 'tui-pagination';
+
 import { refs } from './utilitiesJS/refs';
 import { serverApi } from './utilitiesJS/serverApi';
 import { options } from './pagination';
-
-import { murkupGalleryOnPageLoading } from './utilitiesJS/murkupGalleryOnPageLoading';
-import { options } from './pagination';
+import {
+  murkupGalleryOnPageLoading,
+  murkupGallery,
+} from './utilitiesJS/murkupGalleryOnPageLoading';
+import { spinnerPlay, spinnerStop } from './spinner';
 
 let searchQuery = ' ';
 refs.formRef.addEventListener('submit', onSubmitClick);
 
 async function onSubmitClick(event) {
   event.preventDefault();
+
+  spinnerPlay();
 
   const inputRef = document.querySelector('.header__form-input');
   inputRef.addEventListener('change', () => {
@@ -30,14 +35,15 @@ async function onSubmitClick(event) {
       borderRadius: '25px',
       clickToClose: true,
     });
+    spinnerStop();
     return;
   }
 
   await murkupSearchMovie();
 
-  const container = document.querySelector('.tui-pagination');
+  spinnerStop();
 
-  const pagination = new Pagination(container, options);
+  const pagination = new Pagination(refs.tuiContainer, options);
 
   pagination.on('beforeMove', event => {
     const currentPage = event.page;
@@ -53,15 +59,14 @@ export async function murkupSearchMovie() {
   const total_results = data.total_results;
   options.totalItems = total_results;
 
-  if (total_results < 20) {
-    const item = document.querySelector('.tui-js');
-    item.classList.add('visually-hidden');
+  if (total_results < 20 && total_results !== 0) {
+    refs.tuiContainer.classList.add('visually-hidden');
   } else {
-    const item = document.querySelector('.tui-js');
-    item.classList.remove('visually-hidden');
+    refs.tuiContainer.classList.remove('visually-hidden');
   }
 
   if (movies.length === 0) {
+    murkupGallery();
     Notiflix.Notify.failure(
       'Search result not successful. Enter the correct movie name and',
       {
@@ -72,6 +77,7 @@ export async function murkupSearchMovie() {
       }
     );
     searchQuery = ' ';
+    history.goBack();
     return;
   }
 

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
-const KEY = `7770a554235a470dd8487676c4d97407`;
-
 class ServerApi {
   #page = 1;
-  total_results = 200;
-  request_count = 1;
+  totalResults = 20000;
+  requestCount = 1;
+  language = 'en-US';
+  trend = 'week';
 
   KEY = `api_key=7770a554235a470dd8487676c4d97407`;
   baseUrl = `https://api.themoviedb.org/3`;
@@ -14,7 +14,9 @@ class ServerApi {
 
   async getPopularMovie() {
     const data = await axios({
-      url: `${this.baseUrl}/trending/movie/week?${this.KEY}&page=${this.#page}`,
+      url: `${this.baseUrl}/trending/movie/${this.trend}?${this.KEY}&page=${
+        this.#page
+      }&language=${this.language}`,
     });
 
     return await data.data;
@@ -22,13 +24,12 @@ class ServerApi {
 
   async getMovieOnDemand(query) {
     const data = await axios({
-      url: `${this.baseUrl}/search/movie?${this.KEY}&language=en-US&page=${
-        this.#page
-      }&include_adult=false&query=${query}`,
+      url: `${this.baseUrl}/search/movie?${this.KEY}&language=${
+        this.language
+      }&page=${this.#page}&include_adult=false&query=${query}`,
     });
 
-    if (this.request_count === 1 && data.data.results.length) {
-
+    if (this.requestCount === 1 && data.data.results.length) {
       Notiflix.Notify.success(`We found ${data.data.total_results} movies`, {
         position: 'center-top',
         fontFamily: 'inherit',
@@ -41,19 +42,47 @@ class ServerApi {
   }
 
   async getDetailsMovie(id) {
-    const data = await axios({
-      url: `${this.baseUrl}/movie/${id}?${this.KEY}&language=en-US`,
-    });
+    try {
+      const data = await axios({
+        url: `${this.baseUrl}/movie/${id}?${this.KEY}&language=${this.language}`,
+      });
+
+      return await data.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getTrailer(id) {
+    try {
+      const response = await axios.get(
+        `${this.baseUrl}/movie/${id}/videos?${this.KEY}&language=en-US`
+      );
+
+      return await response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getTop() {
+    const data = await axios.get(
+      `${this.baseUrl}/movie/top_rated?${this.KEY}&language=${
+        this.language
+      }&page=${this.getPage()}`
+    );
 
     return await data.data;
   }
 
-  async getTrailer(id) {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=7770a554235a470dd8487676c4d97407&language=en-US`
+  async getPopular() {
+    const data = await axios.get(
+      `${this.baseUrl}/movie/popular?${this.KEY}&language=${
+        this.language
+      }&page=${this.getPage()}`
     );
-    const data = response.json();
-    return data;
+
+    return await data.data;
   }
   // async getTrailer(id) {
   //   const data = await axios({
@@ -67,15 +96,31 @@ class ServerApi {
   }
 
   setTotalResults(total) {
-    this.total_results = total;
+    this.totalResults = total;
   }
 
   incrementRequestCount() {
-    this.request_count++;
+    this.requestCount++;
   }
 
   setRequestCount() {
-    this.request_count = 1;
+    this.requestCount = 1;
+  }
+
+  setlang(lang) {
+    this.language = lang;
+  }
+
+  setTrend(trend) {
+    this.trend = trend;
+  }
+
+  getTrend() {
+    return this.trend;
+  }
+
+  getPage() {
+    return this.#page > 500 ? 500 : this.#page;
   }
 }
 

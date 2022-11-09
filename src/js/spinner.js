@@ -1,12 +1,12 @@
+import { Spinner } from 'spin.js';
 import { refs } from './utilitiesJS/refs';
-import {Spinner} from 'spin.js';
 
 const opts = {
   lines: 14, // The number of lines to draw
   length: 27, // The length of each line
   width: 20, // The line thickness
   radius: 33, // The radius of the inner circle
-  scale: 1.95, // Scales overall size of the spinner
+  scale: 0.5, // Scales overall size of the spinner
   corners: 1, // Corner roundness (0..1)
   speed: 1, // Rounds per second
   rotate: 18, // The rotation offset
@@ -28,7 +28,6 @@ export function spinnerPlay() {
   spinner.spin(refs.spinner);
   refs.load.classList.remove('is-hidden');
 }
-
 export function spinnerStop() {
   refs.load.classList.add('is-hidden');
   spinner.stop();

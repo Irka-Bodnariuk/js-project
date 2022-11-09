@@ -1,4 +1,6 @@
 import './js/modal';
+import './js/utilitiesJS/selectLang';
+import './js/utilitiesJS/selectTrend';
 import './js/gallery';
 import './js/onSearchForm';
 import './js/pagination';
@@ -6,4 +8,6 @@ import './js/modal-team';
 import './js/theme-dark';
 import './js/treiler';
 import './js/scrollTop';
+import './js/modal-login';
 import './js/spinner';
+import './js/firebase';
